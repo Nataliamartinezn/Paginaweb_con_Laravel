@@ -1,0 +1,94 @@
+.formulario{
+    width: 100%;
+    height: 670px;
+    background: url(../Primer_Class/imagenes/fondoarticulos.jpg);
+
+    }
+.formtitulo{
+
+    width: 100%;
+    display: flex;
+    text-align: center;
+    text-justify: center;
+    justify-content: center;
+}
+
+.formulario h3{
+    color: #174a99;
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 1.2em;
+    padding: 50px;
+    width: 60%;
+}
+.contenedor-contacto{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+form{
+    width: 60%;
+    background-color: rgba(255, 255, 255, 0.63);
+    display: flex;
+    padding: 10px 50px;  
+    align-items: center;
+    justify-content: center; 
+    font-family: 'Roboto';
+}
+
+form input{
+    margin: 5px;
+    padding: 10px;
+    border-color: solid #cccccc;
+    opacity: .6;
+    color: black;
+}
+
+.form1{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+
+}
+.grupo{
+    width: 48%;
+    flex-grow: 1;
+}
+.grupo1{
+    width: 98%;
+    margin:5px;
+
+}
+.form2{
+    width: 100%;
+}
+
+textarea{
+    margin: 5px;
+    height: 100px;
+    border-color: solid #cccccc;
+    opacity: .6;
+    padding: 10px;
+    resize: vertical;
+
+}
+.g-recaptcha{
+
+    margin:5px;
+}
+
+.btn-form{
+    align-items: center;
+    color:#ffffff;
+    display: block;
+    background-color: #174A99;
+    border-width: 2px; border-color: #174A99;border-style: solid;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 10px;
+    margin-top: 10px;
+   
+}
