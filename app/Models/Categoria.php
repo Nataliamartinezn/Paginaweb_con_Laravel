@@ -14,4 +14,8 @@ class Categoria extends Model
         'id','Name','Description'
     ];
 
+    public function products()
+    {
+        return $this->hasMany('App\Models\Product');
+    }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="row justify-content-center ">
+<div class=" row justify-content-center ">
   <div class="col-md-8">
     <div class="card align-items-center">
       <div class="card-header" style="background: rgba(255, 255, 255, 0)"><h3 class="text-center justify-center" style="color:#384fd1">{{ __('¡Contáctanos!')}}</h3>
@@ -72,13 +72,13 @@
           </div>
 
           <div class="row">
-            <div required class="g-recaptcha" data-sitekey="6Lf8hGMaAAAAAIpEWbXdUzfu0H_bxzgxi17cXYOZ"></div>
+            <div required class="g-recaptcha ml-3" data-sitekey="6Lf8hGMaAAAAAIpEWbXdUzfu0H_bxzgxi17cXYOZ"></div>
           </div> 
       
           <div class="row">
               <div class="col-xs-12 col-sm-12 col-md-12 mt-3 text-center">
                   <input type="submit"  value="Enviar" class="btn btn-primary  ">
-                  <a href="{{ route('home') }}" class="btn btn-secondary " >Atrás</a>
+                  <a href="{{ route('product.index') }}" class="btn btn-secondary " >Atrás</a>
               </div>	
           </div>
 

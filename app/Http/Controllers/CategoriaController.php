@@ -16,7 +16,7 @@ class CategoriaController extends Controller
     {
         $categoria = Categoria::latest()->paginate(5);
     
-        return view('categorias.index',['categoria'=> $categoria])//compact mandar la variable 
+        return view('categorias.index',['categoria'=> $categoria,])//compact mandar la variable 
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -103,9 +103,9 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria)
     {
-        $categoria->delete();
+        Categoria::destroy($categoria->id);
     
         return redirect()->route('categorias.index')
-            ->with('success','Categoria deleted successfully');
+           ->with('success','Categoria deleted successfully');
     }
 }

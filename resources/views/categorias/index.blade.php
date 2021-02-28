@@ -1,14 +1,11 @@
 @extends('layouts.app')
 @section('content')
-
-  <H1 class="ml-3">CRUD DATABASE</H1>
-	
   <section class="content">
     <div class="row">
-      <div class="col-10 ml-3">
+      <div class="col ml-3">
         <div class="panel panel-default">
           <div class="panel-body">
-            <div class="pull-left"><h3> Tabla categorias</h3></div>
+            <div class="pull-left mb-4"><h3> Categorias</h3></div>
               <div class="pull-right">
                 <div class="btn-group">
                     <a href="{{ route('categorias.create') }}" class=" mb-2 btn btn-dark" >Agregar categoria</a>
@@ -37,7 +34,9 @@
                               <span class="material-icons">create</span>
                             </a>
 
-                            <button class="btn btn-danger btn-sm" type="submit">
+                            @method ('DELETE')
+                                
+                            <button type="submit" class="btn btn-danger delete-confirm btn-sm" data-name="{{$cat->Name}}">
                               <span class="material-icons">delete</span>
                             </button>
                         </td>
@@ -51,7 +50,7 @@
                   </tbody>
                 </table>
                 <div class="btn-group">
-                  <a href="/" class=" mb-2 btn btn-secondary btn-sm" >Volver</a>
+                  <a href="/listproduct" class=" mb-2 btn btn-secondary btn-sm" >Volver</a>
                 </div>	
               </div>
             </div>

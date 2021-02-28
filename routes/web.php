@@ -5,7 +5,8 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ContactoController;
 
-
+use App\Mail\AvisoContacto;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,32 +19,25 @@ use App\Http\Controllers\ContactoController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('contacto', ContactoController::class);
-
 
 //Rutas disponibles al iniciar sesión 
 Route::group(['middleware' => 'auth'], function () {
     
     Route::resource('/categorias', CategoriaController::class);
-    Route::resource('/product', ProductController::class);
-}); 
+    Route::get('/listproduct', [ProductController::class, 'listproduct'])->name('listadoproductos');
+});
 
-Route::get('send-mail', function () {
-   
-    $$detallecontacto = [
-        'title' => 'Mail from ItSolutionStuff.com',
-        'body' => 'This is for testing email using smtp'
-    ];
-   
-    Mail::to('nata9955@hotmail.com')->send(new \App\Mail\AvisoContacto($detallecontacto));
-   
-    dd("Email is Sent.");
-}); 
+//Ruta eliminar 
+Route::delete('product/{product}',[ProductController::class,'destroy'])->name('product.destroy');
+
+
+//rutas diponible sin iniciar sesion 
+Route::resource('/product', ProductController::class);
+
+Route::get('contacto', [ContactoController::class,'index'])->name('contacto.index');//Rutas contactanos
+Route::post('contacto', [ContactoController::class,'store'])->name('contacto.store');//Rutas contactanos
+
+Route::get('/', [ProductController::class,'home']);//Rutas contactanos
+Route::get('/home', [ProductController::class,'home']);

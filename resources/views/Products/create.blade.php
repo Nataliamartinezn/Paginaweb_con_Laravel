@@ -44,7 +44,7 @@
 
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <select id="" name="" class='form-control input-sm text text-muted' value="{{ old('categorias') }}">
+                                            <select id="categorias_id" name="categorias_id" class='form-control form-select custom-select input-sm text text-muted'>
                                             <option  value="">Seleccione una categoría</option>
                                             @foreach($categorias as $cat) 
                                                 <option value="{{$cat->id}}">{{$cat->Name}}</option>
@@ -58,7 +58,7 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <select name="Status" id="Status" class="form-control input-sm custom-select" >
+                                            <select name="Status" id="Status" class="form-control input-sm form-select custom-select" >
 												<option value="Activo">Activo</option>
                                                 <option value="Inactivo">Inactivo</option>
                                             </select>
@@ -96,15 +96,15 @@
                                 </div>
                                 <div class="row">
 
-                                    <div class="col mb-3">
-                                        <input type="file"  placeholder="Imagen" class="form-control" name="imagen_producto">
+                                    <div class="col mb-3 input-group-prepend">
+                                        <input type="file" placeholder="Imagen" class="form-control " name="imagen_producto" id="inputGroupFile02">
                                     </div>	
                                 </div> 
                     
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <input type="submit"  value="Guardar" class="btn btn-success btn-block">
-                                        <a href="{{ route('product.index') }}" class="btn btn-secondary btn-block" >Atrás</a>
+                                        <a href="/listproduct" class="btn btn-secondary btn-block" >Atrás</a>
                                     </div>	
                                 </div>
                             </form>

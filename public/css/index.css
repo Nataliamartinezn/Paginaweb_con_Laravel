@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-#header img {
+.container img {
     width: 200px;
 }
 .navbar{
@@ -15,7 +15,7 @@
 }
 
 .collapse a{
-    color: #ffffff !important;
+    color: #BBE0F2 !important;
     font-weight: bold;
     
 }
@@ -39,12 +39,12 @@
     width: 100%;
     padding: 30px;
 }
-
-.contenedor-poster-inicial img{
+.infoprod {
     width: 100%;
-    object-fit: cover;
-}
+    height: 100%;
+    background:url('../static/imagenes/fondoarticulos.jpg');
 
+}
 .productos{
     width: 100%;
     padding: 30px 50px 20px 50px;
@@ -101,7 +101,7 @@
     height: 40%;
     width: 100%;
     text-align: left;
-    margin: 10px; padding: 10px;
+    margin: 8px; padding: 10px;
     color: #000;
 }
 

@@ -13,4 +13,9 @@ class Product extends Model
         
         'Name','Description','Price','Status'
     ];
+
+    public function categorias()
+    {
+        return $this->belongsTo('App\Models\Categoria');
+    }
 }

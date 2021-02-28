@@ -13,17 +13,17 @@ class AvisoContacto extends Mailable
 
     // creación variable global
 
-    public $detallecontacto;
+    protected $contacto ;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($detallecontacto)
+    public function __construct($contacto)
     {
         //
-        $this->detallecontacto=$detallecontacto;
+        $this->contacto=$contacto;
     }
 
     /**
@@ -33,8 +33,8 @@ class AvisoContacto extends Mailable
      */
     public function build()
     {
-        return $this->subject('ItSolutionStuff.com')
-            ->view('mails.avisocontacto');
+        return $this->view('contactanos.avisocontacto')
+                ->with(["contacto" => $this->contacto]);
     }
     
 }

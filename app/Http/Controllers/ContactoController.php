@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Contacto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AvisoContacto;
 
 class ContactoController extends Controller
 {
@@ -15,18 +17,8 @@ class ContactoController extends Controller
     public function index()
     {
         //
-        return view('contactanos\contactus');
+        return view('contactanos.contactus');
 
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -35,6 +27,7 @@ class ContactoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         //
@@ -46,6 +39,8 @@ class ContactoController extends Controller
             'comment'=>['required', 'string'],      
         ]);
 
+        $correo=$request->email;
+
         $contacto =new Contacto;
         $contacto->name = $request->name;
         $contacto->phone = $request->phone;
@@ -55,11 +50,27 @@ class ContactoController extends Controller
 
         $contacto->save();
 
+        Mail::to($correo)->send(new AvisoContacto($contacto));
 
+        //Notificacion mensaje Admin
+       /*  Mail::send('contactanos/avisocontacto',['contacto'=>$contacto],function ($message) use ($contacto)
+        {
+            $message->from('nataliacmartinezn@gmail.com','Notificaciones');
+            $message->to('nataliacmartinezn@gmail.com');
+            $message->subject('CONTACTANOS, mensaje recibido de'.$contacto->name);
+        }); */
 
-        return view('contactanos\contactus')
-            ->with('success','El registro se ha actualizado correctamente');
+        // //notificación mensaje usuario
+        // Mail::send('contactanos/avisocontacto',['contacto'=>$contacto],function ($message) use ($contacto)
+        // {
+        //     $message->from('nata9955@outlook.com','Notificaciones');
+        //     $message->to($contacto->email);
+        //     $message->subject('Datos recibidos de Rick&Morty Store');
+        // });
+        // //Devolver un mensaje al momento de enviar el correo funciona cómo el with->
+        $request->session()->flash('success','Se ha enviado correctamente el form');
 
+        return redirect()->back();
     }
 
     /**
@@ -68,42 +79,12 @@ class ContactoController extends Controller
      * @param  \App\Models\Contacto  $contacto
      * @return \Illuminate\Http\Response
      */
-    public function show(Contacto $contacto)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Contacto  $contacto
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Contacto $contacto)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Contacto  $contacto
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Contacto $contacto)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Contacto  $contacto
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Contacto $contacto)
-    {
-        //
-    }
+    
 }
+
+// MAIL_MAILER=smtp
+// MAIL_HOST=smtp.mailtrap.io
+// MAIL_PORT=2525
+// MAIL_USERNAME=7a646fe66e1f87
+// MAIL_PASSWORD=8509d657782859
+// MAIL_ENCRYPTION=tls

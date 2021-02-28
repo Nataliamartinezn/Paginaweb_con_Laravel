@@ -5,8 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header text-center fs-3" style="color:#384fd1">{{ __('Login') }}
-                    <div ><img  class="mt-3 rounded mx-auto d-block " width="300" height="250" src="{{__('../static/imagenes/logotipo.webp')}} " alt=""></div>
+                <div class="card-header text-center fs-3" style="color:#384fd1"><strong><h4>{{ __('Iniciar Sesión') }}</h4></strong>
+                    <div ><img  class="mt-3 rounded mx-auto d-block " width="300" height="200" src="{{__('../static/imagenes/logotipo.webp')}} " alt=""></div>
                 </div>
 
                 <div class="card-body">

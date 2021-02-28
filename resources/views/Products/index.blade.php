@@ -1,78 +1,68 @@
 @extends('layouts.app')
 @section('content')
-	
-  <section class="content">
-    <div class="row">
-      <div class="col-8 m-3">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <div class="pull-left mb-4"><h3>Todos los productos</h3></div>
-              <div class="pull-right">
-                <div class="btn-group">
-                    <a href="{{ route('product.create') }}" class=" mb-2 mr-3 btn btn-dark" >Agregar producto</a>
-                    
-                    <a href="{{ route('categorias.index') }}" class="mb-2 btn btn-dark" >Categorias</a>
-                </div>
-              </div>
-              <div class="table-container">
-                <table id="mytable" class="table text-center a table-striped table-hover">
-                  <thead>
-                    <th>ID</th>
-                      <th>Nombre</th>
-                      <th>Precio</th>
-                      <th>Categoria</th>
-                      <th>Status</th>
-                      <th>Imagen</th>
-                      <th>Acciones</th>
-                  </thead>
-                  <tbody class="align-middle">
-                    @if(!$errors->count())  
-                      @foreach($products as $prod)
-                        <tr>
-                          <td>{{$prod->id}}</td>
-                          <td>{{$prod->Name}}</td>
-                          <td>{{$prod->Price}}</td>	
-                          <td>{{-- {{$categorias->}} --}}</td>
-                          <td>{{$prod->Status}}</td>
-                          <td>
-                            <img class=" rounded mx-auto d-block" width="100" height="100" src="storage/{{ $prod->Image }}" alt="image">
-                          </td>
-                          <td>
-                            <form  action="{{ route('product.destroy', $prod->id) }}" method="POST">
-                              <a href="product/{{$prod->id}}" type="button" class="btn btn-success btn-sm">
-                                <span class="material-icons">visibility</span>
-                              </a>
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rick&Morty Shop</title>
   
-                              <a href="/product/{{$prod->id}}/edit" type="button" class="btn btn-primary btn-sm">
-                                <span class="material-icons">create</span>
-                              </a>
-
-                              @method ('DELETE')
-                              <button href="product/{{$prod->id}}"  type="submit" class="btn btn-danger btn-sm">
-                                <span class="material-icons">remove_circle</span>
-                              </button>
-
-                            </form>
-                          </td>
-                          
-                        @endforeach
-                        @else
-                        <tr>
-                          <td>No se han realizado registros.</td>
-                        </tr> 
-                    @endif  
-                    <script src="{{asset('js/functions.js')}}"></script>
-
-                  </tbody>
-                </table>
-                <div class="btn-group">
-                  <a href="/" class=" mb-2 btn btn-secondary btn-sm" >Volver</a>
-                </div>	
-              </div>
+    
+  </head>   
+  <body class="bg bg-dark " >
+    <main >
+      <section  id="home">
+       
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="{{asset('static/imagenes/banner.webp')}}" class="w-100"  alt="bannerslideshow">
+            </div>
+            <div class="carousel-item">
+              <img src="{{asset('static/imagenes/logotipo.webp')}}" class="m-auto d-block w-80" height="350" alt="bannerslideshow">
+            </div>
+            <div class="carousel-item">
+              <img src="{{asset('static/imagenes/logorick-and-morty.png')}}" class=" m-auto d-block w-90" height="350" alt="bannerslideshow">
             </div>
           </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
-      </div>
-    </div>
-	</section>
+        
+      </section>
+      <section class="productos mt-5" id="nuestros-productos" >
+        <div class="titulo-productos"><h2>Nuestros Productos</h2></div>
+
+        <div class="card">
+          @foreach ($products as $prod)
+          <div class="contenido-productos" >
+            <div class="producto" >
+              <a href="/product/{{$prod -> id}}">
+                <img src="{{url(Storage::url($prod->Image))}}" alt="Mug blanco">
+              </a>
+            </div>
+            <div class="texto-ref" title="Mug Rick&Morty">
+              <h5><strong>{{$prod->Name}}</strong></h5> 
+            <strong> <p>{{$prod->Price}} COP</p></strong> 
+              <a href="/product/{{$prod -> id}}">
+                <span class="elementor-button-text">Ver más >></span><br>
+              </a>
+            </div>
+          </div>
+          @endforeach
+        </div>
+      </section>
+    </main>
+  </body>
 @endsection
